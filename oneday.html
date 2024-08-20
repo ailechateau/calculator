@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>엘르샤토 향료중량 계산기(공방용)</title>
+    <title>엘르샤토 향료중량 계산기(출강용)</title>
 <style>
 @font-face {
     font-family: 'DNFForgedBlade';
@@ -233,8 +233,6 @@ select, input, button, p, span, label {
 
         <button class="btn-calculate" onclick="calculate()">계산하기</button>
     </div>
-</body>
-</html>
 
     <script>
         let N = 0;
@@ -257,7 +255,7 @@ select, input, button, p, span, label {
 
         function createInputGroups() {
             const container = document.getElementById('inputGroups');
-            const labels = ['첫번째', '두번째', '세번째', '네번째', '다섯번째', '여섯번째','일곱번째','여덟번째','아홉번째'];
+            const labels = ['첫번째', '두번째', '세번째', '네번째', '다섯번째', '여섯번째', '일곱번째', '여덟번째', '아홉번째'];
             
             labels.forEach((label, index) => {
                 const div = document.createElement('div');
