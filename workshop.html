@@ -291,8 +291,8 @@ select, input, button, p, span, label {
             const a = Array.from({length: 6}, (_, i) => parseFloat(document.getElementById(`a${i + 1}`).value) || 0);
             const sum = a.reduce((acc, val) => acc + val, 0);
             
-            if (sum === 0) {
-                alert('향료의 합이 0입니다. 최소한 하나의 향료는 0보다 커야 합니다.');
+            if (N === 0) {
+                alert('품목을 선택해주세요.');
                 return;
             }
 
