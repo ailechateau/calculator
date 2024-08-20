@@ -4,199 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>엘르샤토 향료중량 계산기(공방용)</title>
-<style>
-@font-face {
-    font-family: 'DNFForgedBlade';
-    font-style: normal;
-    font-weight: 300;
-    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
-}
-@font-face {
-    font-family: 'DNFForgedBlade';
-    font-style: normal;
-    font-weight: 500;
-    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf') format('opentype');
-}
-@font-face {
-    font-family: 'DNFForgedBlade';
-    font-style: normal;
-    font-weight: 700;
-    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf') format('opentype');
-}
+    <style>
+        @font-face {
+            font-family: 'DNFForgedBlade';
+            font-style: normal;
+            font-weight: 300;
+            src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'DNFForgedBlade';
+            font-style: normal;
+            font-weight: 500;
+            src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'DNFForgedBlade';
+            font-style: normal;
+            font-weight: 700;
+            src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf') format('opentype');
+        }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-}
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
 
-body, select, input, button, p, span, label {
-    font-family: 'DNFForgedBlade', sans-serif;
-}
+        body, select, input, button, p, span, label {
+            font-family: 'DNFForgedBlade', sans-serif;
+        }
 
-body {
-    font-weight: 500;
-    background-image: url('https://raw.githubusercontent.com/ailechateau/calculator/main/y%20bg.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        body {
+            font-weight: 500;
+            background-image: url('https://raw.githubusercontent.com/ailechateau/calculator/main/y%20bg.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container {
-    width: 100%;
-    max-width: 450px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            height: 100vh;
+        }
 
-.text-wrapper1 {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-family: 'DNFForgedBlade', sans-serif;
-    font-weight: 700;
-}
+        .text-wrapper1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: 'DNFForgedBlade', sans-serif;
+            font-weight: 700;
+        }
 
-.text-wrapper1 span {
-    display: inline-block;
-    opacity: 1;
-    transform: translateY(0);
-    animation: jumpIn 1.5s infinite;
-    color: #172f75;
-    font-size: 20px;
-    font-weight: 700;
-}
+        .text-wrapper1 span {
+            display: inline-block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: jumpIn 1.5s infinite;
+            color: #172f75;
+            font-size: 20px;
+            font-weight: 700;
+        }
 
-@keyframes jumpIn {
-    0%, 20%, 100% { transform: translateY(0); }
-    10% { transform: translateY(-10px); }
-}
+        @keyframes jumpIn {
+            0%, 20%, 100% { transform: translateY(0); }
+            10% { transform: translateY(-10px); }
+        }
 
-.volume-radio-group {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto 20px;
-    text-align: center;
-}
+        .volume-radio-group {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
 
-.volume-radio-group select {
-    font-size: 15px;
-    width: 80%;
-    padding: 0.8em 0.5em;
-    line-height: 1;
-    border-radius: 4px;
-    border: none;
-    appearance: none;
-    background-color: #ffffff;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 0.7em center;
-    background-size: 1em;
-    text-align: center;
-}
+        .volume-radio-group select {
+            font-size: 15px;
+            width: 80%;
+            padding: 0.8em 0.5em;
+            line-height: 1;
+            border-radius: 4px;
+            border: none;
+            appearance: none;
+            background-color: #ffffff;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.7em center;
+            background-size: 1em;
+            text-align: center;
+        }
 
-.calculator {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .calculator {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.input-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1em;
-    width: calc(100% - 20px);
-    max-width: 300px;
-}
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1em;
+            width: calc(100% - 20px);
+            max-width: 300px;
+        }
 
-.input-group label {
-    flex: 0 0 45%;
-    text-align: right;
-    margin-right: 0.5em;
-}
+        .input-group label {
+            flex: 0 0 45%;
+            text-align: right;
+            margin-right: 0.5em;
+        }
 
-.input-group select {
-    width: 6em;
-    padding: 0.7em 1em;
-    border-radius: 4px;
-    border: none;
-    appearance: none;
-    background: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 0.3em center;
-    background-size: 1em;
-    text-align: left;
-    background-color: #ffffff;
-}
+        .input-group select {
+            width: 6em;
+            padding: 0.7em 1em;
+            border-radius: 4px;
+            border: none;
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 0.3em center;
+            background-size: 1em;
+            text-align: left;
+            background-color: #ffffff;
+        }
 
-.arrow {
-    margin: 0 0.5em;
-}
+        .arrow {
+            margin: 0 0.5em;
+        }
 
-#c9, #c8, #c7, #c6, #c5, #c4, #c3, #c2, #c1 {
-    background-color: #FFFFFF;
-    text-align: right;
-    border: none;
-    border-radius: 6px;
-    padding-right: 0.5em;
-    width: 3.5em;
-    font-size: 1em;
-    height: 2em;
-    line-height: 2em;
-    font-weight: 600;
-}
+        #c9, #c8, #c7, #c6, #c5, #c4, #c3, #c2, #c1 {
+            background-color: #FFFFFF;
+            text-align: right;
+            border: none;
+            border-radius: 6px;
+            padding-right: 0.5em;
+            width: 3.5em;
+            font-size: 1em;
+            height: 2em;
+            line-height: 2em;
+            font-weight: 600;
+        }
 
-.results-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1em;
-    width: 100%;
-    max-width: 300px;
-}
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+            width: 100%;
+            max-width: 300px;
+        }
 
-#totalDrops, #weights {
-    font-size: 15px;
-    flex: 1;
-    text-align: center;
-    white-space: nowrap;
-}
+        #totalDrops, #weights {
+            font-size: 15px;
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
 
-#totalDrops {
-    text-align: center;
-    width: 5em;
-    margin-left: calc(30% + 0.5em);
-}
+        #totalDrops {
+            text-align: center;
+            width: 5em;
+            margin-left: calc(30% + 0.5em);
+        }
 
-#weights {
-    text-align: center;
-    padding-right: 0.5em;
-}
+        #weights {
+            text-align: center;
+            padding-right: 0.5em;
+        }
 
-.btn-calculate {
-    display: block;
-    margin: 1em auto 0;
-    padding: 0.6em 1.2em;
-    font-size: 0.88em;
-    background-color: #172f75;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        .btn-calculate {
+            display: block;
+            margin: 1em auto 0;
+            padding: 0.6em 1.2em;
+            font-size: 0.88em;
+            background-color: #172f75;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-select, input, button, p, span, label {
-    font-weight: 500;
-}
-</style>
+        select, input, button, p, span, label {
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -231,7 +233,7 @@ select, input, button, p, span, label {
             <div id="inputGroups"></div>
         </div>
 
-        <button class="btn-calculate" onclick="calculate()">계산하기</button>
+        <button class="btn-calculate">계산하기</button>
     </div>
 
     <script>
@@ -247,10 +249,12 @@ select, input, button, p, span, label {
             });
 
             createInputGroups();
-        });
 
-        document.getElementById('volumeSelect').addEventListener('change', function() {
-            N = parseInt(this.value);
+            document.getElementById('volumeSelect').addEventListener('change', function() {
+                N = parseInt(this.value);
+            });
+
+            document.querySelector('.btn-calculate').addEventListener('click', calculate);
         });
 
         function createInputGroups() {
@@ -287,6 +291,11 @@ select, input, button, p, span, label {
         }
 
         function calculate() {
+            if (N === 0) {
+                alert('품목을 선택해주세요.');
+                return;
+            }
+
             const a = Array.from({length: 9}, (_, i) => parseFloat(document.getElementById(`a${i + 1}`).value) || 0);
             const sum = a.reduce((acc, val) => acc + val, 0);
             
