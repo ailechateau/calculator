@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>엘르샤토 향료중량 계산기(출강용)</title>
+<style>
+@font-face {
+    font-family: 'DNFForgedBlade';
+    font-style: normal;
+    font-weight: 300;
+    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
+}
+@font-face {
+    font-family: 'DNFForgedBlade';
+    font-style: normal;
+    font-weight: 500;
+    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: 'DNFForgedBlade';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf') format('opentype');
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body, select, input, button, p, span, label {
+    font-family: 'DNFForgedBlade', sans-serif;
+}
+
+body {
+    font-weight: 500;
+    background-image: url('https://maisonlilyan.github.io/cal/y%20bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.0);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 450px;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.text-wrapper1 {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-family: 'DNFForgedBlade', sans-serif;
+    font-weight: 700;
+}
+
+.text-wrapper1 span {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: jumpIn 1.5s infinite;
+    color: #172f75;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+@keyframes jumpIn {
+    0%, 20%, 100% { transform: translateY(0); }
+    10% { transform: translateY(-10px); }
+}
+
+.volume-radio-group {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.volume-radio-group select {
+    width: 90%;
+    padding: 0.5em;
+    border-radius: 4px;
+    border: none;
+    appearance: none;
+    background-color: #ffffff;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.3em center;
+    background-size: 1em;
+    text-align-last: center;
+    -webkit-text-align-last: center;
+    text-align: center;
+    -webkit-text-align: center;
+}
+
+.calculator {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+    right: 20px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.input-group label {
+    margin-right: 0.5em;
+    text-align: right;
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.input-group select {
+    width: 10em;
+    padding: 0.5em 0.3em;
+    border-radius: 4px;
+    border: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 0.3em center;
+    background-size: 1em;
+    text-align-last: center;
+    -webkit-text-align-last: center;
+    text-align: center;
+    -webkit-text-align: center;
+    background-color: #ffffff;
+}
+
+.arrow {
+    margin: 0 0.5em;
+}
+
+#c6, #c5, #c4, #c3, #c2, #c1 {
+    background-color: #FFFFFF;
+    text-align: right;
+    border: none;
+    border-radius: 6px;
+    padding-right: 0.5em;
+    display: block;
+    width: 4em;
+    font-size: 1em;
+    height: 2em;
+    line-height: 2em;
+    font-weight: 600;
+}
+
+.space-between {
+    margin-bottom: 1em;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 0 20px;
+}
+
+#totalDrops, #weights {
+    flex: 1;
+    text-align: center;
+}
+  
+  #totalDrops {
+	margin-left: 65px;
+}
+
+.btn-calculate {
+    display: block;
+    margin: 1em auto 0;
+    padding: 0.6em 1.2em;
+    font-size: 0.88em;
+    background-color: #172f75;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+select, input, button, p, span, label {
+    font-weight: 500;
+}
+
+@media (min-width: 600px) {
+    .input-group select {
+        width: 4.5em;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-wrapper1">
+            <span>엘</span><span>르</span><span>샤</span><span>토</span> 
+            <span>향</span><span>료</span><span>중</span><span>량</span>
+            <span>계</span><span>산</span><span>기</span>
+        </div>
+        
+        <div class="volume-radio-group">
+            <select id="volumeSelect">
+                <option value="0" selected>품목을 선택해주세요.</option>
+                <option value="3">오드뚜왈렛 50ml</option>
+                <option value="6">오드퍼퓸 50ml</option>
+                <option value="10">엑스뜨레드 50ml</option>
+                <option value="8">워터베이스 50ml</option>
+                <option value="10">디퓨저 50ml</option>
+                <option value="20">디퓨저 100ml</option>
+                <option value="3">룸스프레이 100ml</option>
+                <option value="3">패브릭 스프레이 100ml</option>
+                <option value="1">핸드크림 50ml</option>
+            </select>
+        </div>
+        
+        <div class="space-between"></div>
+        
+<div class="results-header">
+    <span id="totalDrops">최종 방울 수</span>
+    <span id="weights">향료 무게(g)</span>
+</div>
+        
+        <div class="calculator">
+            <div id="inputGroups"></div>
+        </div>
+
+        <button class="btn-calculate" onclick="calculate()">계산하기</button>
+    </div>
+
+    <script>
+        let N = 0;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const spans = document.querySelectorAll('.text-wrapper1 span');
+            const totalDuration = (spans.length - 1) * 0.2 + 2.5;
+            
+            spans.forEach((span, index) => {
+                span.style.animationDelay = `${index * 0.2}s`;
+                span.style.animationDuration = `${totalDuration}s`;
+            });
+
+            createInputGroups();
+        });
+
+        document.getElementById('volumeSelect').addEventListener('change', function() {
+            N = parseInt(this.value);
+        });
+
+        function createInputGroups() {
+            const container = document.getElementById('inputGroups');
+            const labels = ['첫번째', '두번째', '세번째', '네번째', '다섯번째', '여섯번째'];
+            
+            labels.forEach((label, index) => {
+                const div = document.createElement('div');
+                div.className = 'input-group';
+                div.innerHTML = `
+                    <label for="a${index + 1}">${label} 향료 :</label>
+                    <select id="a${index + 1}" onchange="checkInput(this)">
+                        ${createOptions(index < 3 ? 1 : 0)}
+                    </select>
+                    <span class="arrow">➡</span>
+                    <input type="text" id="c${index + 1}" readonly>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function createOptions(selectedValue) {
+            let options = '';
+            for (let i = 0; i <= 10; i++) {
+                options += `<option value="${i}" ${i === selectedValue ? 'selected' : ''}>${i}</option>`;
+            }
+            return options;
+        }
+
+        function checkInput(input) {
+            if (input.value === '') {
+                input.value = '0';
+            }
+        }
+
+        function calculate() {
+            const a = Array.from({length: 6}, (_, i) => parseFloat(document.getElementById(`a${i + 1}`).value) || 0);
+            const sum = a.reduce((acc, val) => acc + val, 0);
+            
+            if (sum === 0) {
+                alert('향료의 합이 0입니다. 최소한 하나의 향료는 0보다 커야 합니다.');
+                return;
+            }
+
+            a.forEach((value, i) => {
+                const b = value / sum * 100;
+                const c = (N * b / 100).toFixed(2);
+                document.getElementById(`c${i + 1}`).value = c;
+            });
+        }
+    </script>
+</body>
+</html>
