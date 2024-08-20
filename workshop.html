@@ -273,6 +273,12 @@ select, input, button, p, span, label {
             });
         }
 
+ function calculate() {
+            if (N === 0) {
+                alert('품목을 선택해주세요.');
+                return;
+            }
+        
         function createOptions(selectedValue) {
             let options = '';
             for (let i = 0; i <= 10; i++) {
