@@ -251,7 +251,7 @@
             createInputGroups();
 
             document.getElementById('volumeSelect').addEventListener('change', function() {
-                N = parseInt(this.value);
+                N = parseFloat(this.value);
             });
 
             document.querySelector('.btn-calculate').addEventListener('click', calculate);
