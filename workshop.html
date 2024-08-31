@@ -251,7 +251,7 @@ select, input, button, p, span, label {
         });
 
         document.getElementById('volumeSelect').addEventListener('change', function() {
-            N = parseInt(this.value);
+            N = parseFloat(this.value);
         });
 
         function createInputGroups() {
