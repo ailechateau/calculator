@@ -28,7 +28,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Prevents scrollbars caused by potentially oversized background height */
+            overflow: hidden;
         }
 
         body, select, input, button, p, span, label {
@@ -38,18 +38,13 @@
         body {
             font-weight: 500;
             background-image: url('https://raw.githubusercontent.com/ailechateau/calculator/main/newbg.jpg');
-            /* --- MODIFIED PROPERTIES --- */
-            background-position: center top; /* Align to top */
+            background-position: center;
             background-repeat: no-repeat;
-            background-size: 100% auto; /* Force width to 100%, height adjusts proportionally */
-            /* background-attachment: fixed; */ /* Removed fixed attachment as it can interact strangely with 100% auto sometimes, especially on mobile. Re-add if needed. */
-            /* --- END MODIFIED PROPERTIES --- */
+            background-size: cover;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Ensure body takes full viewport height */
-            min-height: 100vh;
-            box-sizing: border-box; /* Include padding in height calculation if added later */
         }
 
         .container {
@@ -60,13 +55,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Allow container to scroll if content overflows, not the whole body */
             overflow-y: auto;
-             /* Adjusted height to fill remaining space, considering potential fixed headers/footers if added */
-            height: 100%; /* Changed from 100vh to fill parent body space */
-            /* Add a semi-transparent background to container if needed for text readability */
-            /* background-color: rgba(255, 255, 255, 0.8); */
-            /* border-radius: 10px; /* Optional: rounded corners for the content area */
+            height: 100vh;
         }
 
         .text-wrapper1 {
@@ -185,16 +175,12 @@
         #totalDrops {
             text-align: center;
             width: 5em;
-            /* Adjusted margin for potentially centered alignment */
-            margin-left: auto; /* Changed from fixed calc */
-            margin-right: 1em; /* Added some space */
+            margin-left: calc(30% + 0.5em);
         }
 
         #weights {
             text-align: center;
             padding-right: 0.5em;
-            margin-left: 1em; /* Added some space */
-            margin-right: auto; /* Changed alignment */
         }
 
         .btn-calculate {
@@ -217,11 +203,11 @@
 <body>
     <div class="container">
         <div class="text-wrapper1">
-            <span>엘</span><span>르</span><span>샤</span><span>토</span>
+            <span>엘</span><span>르</span><span>샤</span><span>토</span> 
             <span>향</span><span>료</span><span>중</span><span>량</span>
             <span>계</span><span>산</span><span>기</span>
         </div>
-
+        
         <div class="volume-radio-group">
             <select id="volumeSelect">
                 <option value="0" selected>품목을 선택해주세요.(공방용)</option>
@@ -237,12 +223,12 @@
                 <option value="3">핸드크림 100ml</option>
             </select>
         </div>
-
+        
         <div class="results-header">
             <span id="totalDrops">최종 방울 수</span>
             <span id="weights">향료 무게(g)</span>
         </div>
-
+        
         <div class="calculator">
             <div id="inputGroups"></div>
         </div>
@@ -256,7 +242,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const spans = document.querySelectorAll('.text-wrapper1 span');
             const totalDuration = (spans.length - 1) * 0.2 + 2.5;
-
+            
             spans.forEach((span, index) => {
                 span.style.animationDelay = `${index * 0.2}s`;
                 span.style.animationDuration = `${totalDuration}s`;
@@ -274,7 +260,7 @@
         function createInputGroups() {
             const container = document.getElementById('inputGroups');
             const labels = ['첫번째', '두번째', '세번째', '네번째', '다섯번째', '여섯번째', '일곱번째', '여덟번째', '아홉번째'];
-
+            
             labels.forEach((label, index) => {
                 const div = document.createElement('div');
                 div.className = 'input-group';
@@ -312,7 +298,7 @@
 
             const a = Array.from({length: 9}, (_, i) => parseFloat(document.getElementById(`a${i + 1}`).value) || 0);
             const sum = a.reduce((acc, val) => acc + val, 0);
-
+            
             if (sum === 0) {
                 alert('향료의 합이 0입니다. 최소한 하나의 향료는 0보다 커야 합니다.');
                 return;
@@ -327,3 +313,6 @@
     </script>
 </body>
 </html>
+
+배경이미지가 첨부한 사진인데 이게 모바일에서 봤을때나, PC에서 봤을떄 가로크기가 고정이됐으면 좋겠어. 그니까 창사이즈가 어떠하든 이 이미지의 가로가 꽉차지는거야.
+코드 수정해줘.
